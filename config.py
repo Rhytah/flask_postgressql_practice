@@ -12,14 +12,14 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG=True
     ENV = 'development'
-    DATABASE_URI = 'report_db'
+    DATABASE = 'report_db'
     TESTING = False
 
 
 class TestingConfig(Config):
     DEBUG=True
     ENV = 'testing'
-    DATABASE_URI= 'reporttest_db'
+    DATABASE= 'reporttest_db'
     TESTING = True
 
 class ProductionConfig(Config):
