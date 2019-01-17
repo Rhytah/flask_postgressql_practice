@@ -15,7 +15,7 @@ class User_controller:
     def add_reporter(self,*args):
         user_data = request.get_json()
         user_id = len(self.reporters)+1
-        isadmin = "Not Admin"
+        isadmin = False
         registered = datetime.datetime.now()
         firstname = user_data.get('firstname')
         lastname = user_data.get('lastname')
@@ -27,8 +27,9 @@ class User_controller:
         invalid_user=validator.validate_add_user(firstname,lastname,username,email,password,phone_number,othernames)
         if invalid_user:
             return invalid_user
-        new_reporter = {'user_id':user_id,'registered':registered,'firstname':firstname,'lastname':lastname,'othernames':othernames,'email':email,'phone_number':phone_number,'username':username,"isadmin":isadmin,'password':password}
-        reporter =reporter_obj.search_reporter(username,password)
+        reporter =reporter_obj.search_reporter(email)
+        new_reporter = reporter_obj.create_reporter(firstname,lastname, username, password, email,phone_number,isadmin,registered)
+
         if reporter:
                 return jsonify({
                     "status":400,

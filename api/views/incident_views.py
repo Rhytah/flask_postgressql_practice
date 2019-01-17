@@ -15,7 +15,7 @@ def fetch_single_red_flag(redflag_id):
     return incidents_controller.fetch_specific_redflag(redflag_id)
 
 @incident.route('/api/v1/red-flags',methods=['POST'])
-@jwt_required
+# @jwt_required
 def add_red_flag():
     request_data=request.get_json()
     return incidents_controller.add_redflag(request_data)
